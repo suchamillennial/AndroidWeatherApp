@@ -16,11 +16,11 @@
     <ImageView
         android:layout_height="match_parent"
         app:srcCompat="@drawable/electric_storm_bg"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Enter Location"
@@ -31,8 +31,7 @@
         android:id="@+id/textView"
         android:layout_marginTop="50dp"
         android:textSize="30sp"
-        android:textColor="@android:style/Widget.ListView.White"
-        tools:textColor="@android:color/background_light" />
+        android:textColor="@color/white" />
 
     <EditText
         android:layout_width="match_parent"
@@ -42,16 +41,16 @@
         android:ems="10"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:id="@+id/editText"
+        android:id="@+id/cityName"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/white" />
 
     <Button
         android:text="Check The Weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/cityName"
         android:layout_centerHorizontal="true"
         android:id="@+id/button"
         android:onClick="findWeather"
@@ -66,5 +65,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
         android:textSize="20sp"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@color/white" />
+
 </RelativeLayout>
