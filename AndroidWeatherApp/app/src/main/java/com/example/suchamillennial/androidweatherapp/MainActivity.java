@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -83,6 +87,38 @@ public class MainActivity extends AppCompatActivity {
             }
 
             return null;
+        }
+
+        // This is a method that will run in the background after the AsyncTask completes. It does NOT effect the UI. This will parse the JSON response
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+                // Create a JSON Object from the API call result String. Needs try catch in case of invalid JSON
+                JSONObject jsonObject = new JSONObject(result);
+
+                // Get the info inside the weather section of the JSONObject
+                String weatherInfo = jsonObject.getString("weather");
+
+                Log.i("Weather Content", weatherInfo);
+
+                JSONArray arr = new JSONArray(weatherInfo);
+
+                // Loop through array to get all elements of the weather info and turn into JSON Objects
+                for(int i =0; i <arr.length();i++){
+
+                    JSONObject jsonPart = arr.getJSONObject(i);
+
+                    // Log the information from each section of the weather
+                    Log.i("main", jsonPart.getString("main"));
+                    Log.i("description", jsonPart.getString("description"));
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
