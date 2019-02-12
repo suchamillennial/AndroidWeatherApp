@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +25,16 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Declare references to Widgets
+
+    EditText cityName;
+
+    // The findWeather method is called by the View type Button upon and onClick event
+    public void findWeather(View view){
+
+        Log.i("cityName", cityName.getText().toString());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Create references to the UI Widgets for use in code
+        cityName = (EditText)findViewById(R.id.cityName);
+
+        // Comment out the floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
