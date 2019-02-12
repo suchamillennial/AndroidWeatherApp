@@ -1,13 +1,22 @@
 package com.example.suchamillennial.androidweatherapp;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +35,55 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    // The Async task method that will be used to make the call to the API
+    public class DownloadTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+
+            String result = "";
+            URL url;
+            HttpURLConnection urlConnection = null;
+
+            // Try catch block incase the URL or connection is invalid
+
+            try {
+                // Make a URL object from the first string parameter
+                url = new URL(urls[0]);
+
+                // Create a connection by opening one to the URL that was just created
+                urlConnection = (HttpURLConnection) url.openConnection();
+
+                // Create an InputStream from the URL connection
+                InputStream in = urlConnection.getInputStream();
+
+                // Create an InputStreamReader object to read the created InputStream
+                InputStreamReader reader = new InputStreamReader(in);
+
+                // Start reading the data from the InputStream while it still exists
+                int data = reader.read();
+                while(data != -1){
+                    // Cast the incoming data as a char and add it to the result string
+                    char current = (char) data;
+                    result += current;
+
+                    // Get the next bit of data from the InputStream
+                    data = reader.read();
+                }
+
+                // Return the result string from the API call
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 
     @Override
