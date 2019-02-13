@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     // Declare references to Widgets
 
     EditText cityName;
-    
+    TextView resultTextView;
+
     // Get the API Key from the Key file
     static final String APP_KEY = Keys.APP_KEY;
 
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Create references to the UI Widgets for use in code
         cityName = (EditText)findViewById(R.id.cityName);
+        resultTextView = (TextView)findViewById(R.id.resultTextView);
 
         // Comment out the floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
