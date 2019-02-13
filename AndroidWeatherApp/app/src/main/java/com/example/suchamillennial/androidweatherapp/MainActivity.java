@@ -1,5 +1,6 @@
 package com.example.suchamillennial.androidweatherapp;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -38,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
     public void findWeather(View view){
         String cityString = cityName.getText().toString();
         Log.i("cityName", cityString);
+
+        // Create InputMethodManager to collapse the keyboard upon hitting the button
+        InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        // Use the InputMethodManager to hide the keyboard
+        mgr.hideSoftInputFromWindow(cityName.getWindowToken(),0);
+
         DownloadTask task = new DownloadTask();
         // task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + cityString);
         task.execute("http://api.openweathermap.org/data/2.5/weather?q="+cityString+"&appid="+APP_KEY);
