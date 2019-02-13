@@ -33,19 +33,6 @@
         android:textSize="30sp"
         android:textColor="@color/white" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/cityName"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:textColor="@color/white" />
-
     <Button
         android:text="Check The Weather"
         android:layout_width="wrap_content"
@@ -65,5 +52,18 @@
         android:layout_marginBottom="100dp"
         android:textSize="20sp"
         android:textColor="@color/white" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/cityName"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:contentDescription="Location Name" />
 
 </RelativeLayout>
