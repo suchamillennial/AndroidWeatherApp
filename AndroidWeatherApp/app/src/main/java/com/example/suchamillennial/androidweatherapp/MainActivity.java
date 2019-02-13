@@ -22,9 +22,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,9 +48,20 @@ public class MainActivity extends AppCompatActivity {
         // Use the InputMethodManager to hide the keyboard
         mgr.hideSoftInputFromWindow(cityName.getWindowToken(),0);
 
-        DownloadTask task = new DownloadTask();
-        // task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + cityString);
-        task.execute("http://api.openweathermap.org/data/2.5/weather?q="+cityString+"&appid="+APP_KEY);
+        // Encode the CityName String as a URL in the case that it is an odd name
+        try {
+            String encodedCityName = URLEncoder.encode(cityString, "UTF-8");
+
+            DownloadTask task = new DownloadTask();
+            // task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + cityString);
+            task.execute("http://api.openweathermap.org/data/2.5/weather?q="+encodedCityName+"&appid="+APP_KEY);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+
+            Toast.makeText(getApplicationContext(),"Problem with the specified location", Toast.LENGTH_LONG).show();
+
+        }
 }
 
     @Override
