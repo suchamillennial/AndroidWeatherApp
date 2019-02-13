@@ -151,6 +151,10 @@ public class MainActivity extends AppCompatActivity {
                         String main ="";
                         String description = "";
 
+                        main = jsonPart.getString("main");
+                        description = jsonPart.getString("description");
+
+
                         // If both string aren't empty we can update the message string
                         if(main!= "" && description!=""){
                             message += main + ":" + description + "\r\n";
