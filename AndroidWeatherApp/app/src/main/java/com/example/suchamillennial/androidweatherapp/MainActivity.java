@@ -120,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
             if(result!=null){
                 try {
+
+                    // Create a message string to be put in the UI
+                    String message = "";
+
                     // Create a JSON Object from the API call result String. Needs try catch in case of invalid JSON
                     JSONObject jsonObject = new JSONObject(result);
 
@@ -135,10 +139,18 @@ public class MainActivity extends AppCompatActivity {
 
                         JSONObject jsonPart = arr.getJSONObject(i);
 
-                        // Log the information from each section of the weather
-                        Log.i("main", jsonPart.getString("main"));
-                        Log.i("description", jsonPart.getString("description"));
+                        // Create Strings for the result details
+                        String main ="";
+                        String description = "";
 
+                        // If both string aren't empty we can update the message string
+                        if(main!= "" && description!=""){
+                            message += main + ":" + description + "\r\n";
+                        }
+                    }
+                    // Update the ResultTextView if the message is not empty
+                    if(message != ""){
+                        resultTextView.setText(message);
                     }
 
                 } catch (JSONException e) {
