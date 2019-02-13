@@ -28,12 +28,18 @@ public class MainActivity extends AppCompatActivity {
     // Declare references to Widgets
 
     EditText cityName;
+    
+    // Get the API Key from the Key file
+    static final String APP_KEY = Keys.APP_KEY;
 
     // The findWeather method is called by the View type Button upon and onClick event
     public void findWeather(View view){
-
-        Log.i("cityName", cityName.getText().toString());
-    }
+        String cityString = cityName.getText().toString();
+        Log.i("cityName", cityString);
+        DownloadTask task = new DownloadTask();
+        // task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + cityString);
+        task.execute("http://api.openweathermap.org/data/2.5/weather?q="+cityString+"&appid="+APP_KEY);
+}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // Return the result string from the API call
+                Log.i("result",result);
                 return result;
 
             } catch (MalformedURLException e) {
