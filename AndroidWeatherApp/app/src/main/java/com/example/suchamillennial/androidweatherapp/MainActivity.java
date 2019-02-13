@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -176,10 +177,15 @@ public class MainActivity extends AppCompatActivity {
                     // Update the ResultTextView if the message is not empty
                     if(message != ""){
                         resultTextView.setText(message);
+                    }else{
+
+                        // Add error message here for problem with JSON
+                        Toast.makeText(getApplicationContext(), "No Data was retrieved", Toast.LENGTH_LONG).show();
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    // Add error message here for problem with JSON
+                    Toast.makeText(getApplicationContext(), "There was a problem with the Data", Toast.LENGTH_LONG).show();
                 }
             }else{
                 Log.i("Null","NULL");
